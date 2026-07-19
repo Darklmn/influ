@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-slate-200;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    @apply bg-brand-600/15 text-brand-800;
+  }
+  h1, h2, h3, h4 {
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1200px] px-6;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700;
+  }
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-full text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-brand-600 px-5 py-3 text-white shadow-glow hover:-translate-y-0.5 hover:bg-brand-700 active:translate-y-0;
+  }
+  .btn-ghost {
+    @apply btn border border-slate-200 bg-white px-5 py-3 text-ink hover:border-brand-200 hover:bg-brand-50;
+  }
+  .card {
+    @apply rounded-3xl border border-slate-200/80 bg-white shadow-soft;
+  }
+}
+
+/* Utility: subtle dotted / grid background */
+.bg-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(21, 94, 240, 0.09) 1px, transparent 0);
+  background-size: 26px 26px;
+}
+.bg-radial-brand {
+  background:
+    radial-gradient(60% 60% at 50% 0%, rgba(47, 128, 255, 0.14) 0%, rgba(47, 128, 255, 0) 70%),
+    radial-gradient(40% 50% at 90% 10%, rgba(21, 94, 240, 0.1) 0%, rgba(21, 94, 240, 0) 60%);
+}
+.text-gradient {
+  @apply bg-gradient-to-br from-brand-700 via-brand-600 to-brand-400 bg-clip-text text-transparent;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
