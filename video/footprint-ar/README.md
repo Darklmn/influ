@@ -63,3 +63,10 @@ scripts/make_music.py        musique + SFX procéduraux → public/music_sfx.wav
 scripts/vectorize_logo.py    vectorisation du logo
 scripts/stills.mjs           images de contrôle
 ```
+
+## Livrables
+
+- **Vidéo finale avec voix off** (1080×1920, 42,5 s, −14 LUFS) : dans la médiathèque Higgsfield,
+  `trading_evolution_footprint_ar.mp4` (media `a856d1c8-cd5f-49a2-8c68-e1c720d1122c`).
+- `renders/footprint_ar_music_sfx.mp4` : la même vidéo avec musique + SFX, **sans** la voix
+  (base utilisée pour le mixage final avec `scripts/mix_final.py`).
