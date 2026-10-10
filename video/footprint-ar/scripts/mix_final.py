@@ -12,8 +12,9 @@ video, vo, out = sys.argv[1:4]
 
 VOICE = (
     "[1:a]aresample=48000,highpass=f=80,equalizer=f=3500:t=q:w=1.2:g=2,"
-    "acompressor=threshold=-20dB:ratio=3:attack=8:release=120:makeup=3,pan=stereo|c0=c0|c1=c0[vo];"
-    "[0:a]aresample=48000[bed];"
+    "acompressor=threshold=-20dB:ratio=3:attack=8:release=120:makeup=3,"
+    "pan=stereo|FL=c0|FR=c0,aformat=sample_fmts=fltp:channel_layouts=stereo[vo];"
+    "[0:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo[bed];"
     "[vo][bed]amix=inputs=2:duration=longest:normalize=0"
 )
 
@@ -32,7 +33,7 @@ ln = (
 )
 subprocess.run(
     ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", video, "-i", vo,
-     "-filter_complex", VOICE + "," + ln + ",aresample=48000[a]",
+     "-filter_complex", VOICE + "," + ln + ",aresample=48000,aformat=channel_layouts=stereo[a]",
      "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "256k",
      "-movflags", "+faststart", out],
     check=True,
